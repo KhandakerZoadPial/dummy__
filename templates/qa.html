@@ -1,0 +1,152 @@
+{% extends 'tracesavvy/apps/main/layouts.html' %}
+{% load static %}
+
+{% block additional_css %}
+<style>
+.spacer {
+    margin-top: 5px;
+
+   }
+</style>
+{% endblock %}
+
+{% block message %}
+{% include 'tracesavvy/apps/main/alert.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="row page-titles">
+    <h4 class="card-title">AV Questions & Answers</h4>
+    <div class="spacer">Add Questions and associate Answers</div>
+</div>
+<div class="row">
+<div class="col-xl-6 col-lg-12">
+    
+<div class="card">
+    <div class="card-header">
+        <!--Questions-->
+        <h4 class="card-title">Questions</h4>
+        <p>Select a question to see answers</p>
+        <!-- Add Question modal -->
+        
+
+
+
+        <!-- Add Question modal -->
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table style-1 custom-tbl" id="ListDatatableView">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>                  
+                        <th></th>                 
+                        {% if perms.common.delete_questions or perms.common.change_questions %}			
+                        <th>Action</th>
+                        {% endif %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in qa_list %}
+                    <tr>
+                        <td>
+                            <h6>{{ forloop.counter }}</h6>
+                        </td>
+
+                        <td>
+                            <div class="media style-1">
+                                <div class="media-body">
+                                    <a href=""> <h6>{{ question.question}}</h6>  </a>
+                                </div>
+                            </div>
+                        </td>                    
+                        <td>
+                            <td>
+                                {% if perms.common.change_customers %} 
+                                <a href="" class="btn btn-primary shadow btn-xs sharp me-2" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt color-muted"></i></a> 
+                                 {% endif %} 
+                                 {% if perms.common.delete_customers %} 
+                                <a href="" class="btn btn-danger shadow btn-xs sharp me-2" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a> 
+                                {% endif %}      
+                            </td>
+                    </tr>
+
+                        {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-xl-6 col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <!--Answers-->
+            <h4 class="card-title">Associated Answers</h4>
+            <p></p>
+            <button type="submit" class="btn btn-primary">Add Answers</button>
+         
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table style-1 custom-tbl" id="ListDatatableView">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Answer</th>                  
+                            <th></th>                 
+                            {% if perms.common.delete_questions or perms.common.change_questions %}			
+                            <th>Action</th>
+                            {% endif %}
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for question in qa_list %}
+                        <tr>
+                            <td>
+                                <h6>{{ forloop.counter }}</h6>
+                            </td>
+    
+                            <td>
+                                <div class="media style-1">
+                                    <div class="media-body">
+                                        <a href=""> <h6>{{ question.question}}</h6>  </a>
+                                    </div>
+                                </div>
+                            </td>                    
+                            <td>
+                                <td>
+                                    {% if perms.common.change_customers %} 
+                                    <a href="" class="btn btn-primary shadow btn-xs sharp me-2" data-bs-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-pencil-alt color-muted"></i></a> 
+                                     {% endif %} 
+                                     {% if perms.common.delete_customers %} 
+                                    <a href="" class="btn btn-danger shadow btn-xs sharp me-2" data-bs-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a> 
+                                    {% endif %}      
+                                </td>
+                        </tr>
+    
+                            {% endfor %}
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            
+      
+    
+
+{% endblock %}
+
+
+{% block additional_js %}
+<script>
+
+</script>
+{% endblock %}
